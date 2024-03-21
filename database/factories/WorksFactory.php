@@ -22,4 +22,5 @@ class WorksFactory extends Factory
             'address'=>fake()->address()
         ];
     }
+    
 }
