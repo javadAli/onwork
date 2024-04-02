@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WorksController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\View\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +15,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::view("/","welcome");
+Route::get("/workers/{workId}",[WorksController::class,"getWorkers"])->middleware('auth');
+Route::middleware('auth')->resource("works",WorksController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -57,8 +57,19 @@
                         <a href="#testimonials"
                             class="font-bold duration-100 transition-color hover:text-indigo-600">مشتریان نمونه</a>
                         <div class="flex flex-col block w-full font-medium border-t border-gray-200 md:hidden">
-                            <a href="#_" class="w-full py-2 font-bold text-center text-pink-500">ورود</a>
-                            <a href="#_"
+                            @auth 
+                            <a href="{{url('/profile')}}" class="w-full py-2 font-bold text-center text-pink-500">
+                                @auth
+                                    {{auth()->user()->name}}
+                                @endauth
+                            </a>
+                            @else
+                            <a href="{{url('/login')}}" class="w-full py-2 font-bold text-center text-pink-500">
+                                ورود
+                            </a>
+                            @endauth
+
+                            <a href="{{url('/works')}}"
                                 class="relative inline-block w-full px-5 py-3 text-sm leading-none text-center text-white bg-indigo-700 fold-bold">
                                 شروع برنامه </a>
                         </div>
@@ -66,10 +77,15 @@
         
                     <div
                         class="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
-                        <a href="#_"
-                            class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">ورود</a>
-                        <a href="#_"
-                            class="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-white transition-all transition duration-100 duration-300 bg-indigo-700 rounded shadow-md fold-bold lg:bg-white lg:text-indigo-700 sm:w-full lg:shadow-none hover:shadow-xl">شروع برنامه</a>
+                        @auth 
+                        <a href="{{url('/profile')}}"
+                        class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">{{auth()->user()->name}}</a>
+                        @else 
+                        <a href="{{url('/login')}}"
+                        class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">ورود</a>
+                        @endauth
+
+                        <a href="{{url('/works')}}" class="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-white transition-all transition duration-100 duration-300 bg-indigo-700 rounded shadow-md fold-bold lg:bg-white lg:text-indigo-700 sm:w-full lg:shadow-none hover:shadow-xl">شروع برنامه</a>
                         <svg class="absolute top-0 left-0 hidden w-screen max-w-3xl -mt-64 -ml-12 lg:block"
                             viewBox="0 0 818 815" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs>
@@ -134,7 +150,7 @@
                         <p class="pr-0 mb-8 text-base text-gray-600 sm:text-lg xl:text-xl lg:pr-20">
                             وقت حسابداری سرکار را داری دیگه استرس حساب و کتاب هم نداری!
                         </p>
-                        <a href="#_"
+                        <a href="{{url('/register')}}"
                             class="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0"> امروز نصب کن</a>
                         <!-- Integrates with section -->
                         <div class="flex-col hidden mt-12 sm:flex lg:mt-24">
@@ -299,8 +315,7 @@
                                 <h4 class="relative mt-6 text-lg font-bold"> حساب و کتاب دقیق </h4>
                                 <p class="relative mt-2 text-base text-center text-gray-600">
                                     تمامی حساب و کتاب شما در یک منبع داده معتبر تا سه سال بعد از قطع ارتباط ذخیره می ماند.</p>
-                                <a href="#_" class="relative flex mt-2 text-sm font-medium text-indigo-500 underline">Learn
-                                    More</a>
+                                <a href="#_" class="relative flex mt-2 text-sm font-medium text-indigo-500 underline">بیشتر بخوانید</a>
                             </div>
                         </div>
         
@@ -437,10 +452,10 @@
             <div class="relative px-8 py-10 bg-white border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
         
                 <div id="pricing" class="container flex flex-col items-center h-full max-w-6xl mx-auto">
-                    <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Our Pricing</h2>
-                    <h3
-                        class="w-full max-w-2xl px-5 px-8 mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">
-                        Simple, Transparent Pricing for Everyone</h3>
+                    <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase"> نرخ های فروش </h2>
+                    <h3 class="w-full max-w-2xl px-5 px-8 mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">
+                    نمونه های مناسب برای همه
+                    </h3>
         
                     <div class="max-w-full mx-auto md:max-w-6xl sm:px-8">
                         <!-- Basic Pricing -->
@@ -450,13 +465,12 @@
                                 <div class="overflow-hidden text-black bg-white border-t border-gray-100 rounded-lg shadow-sm">
                                     <div
                                         class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
-                                        <h3 class="p-3 text-lg font-bold tracking-wide text-center uppercase">Basic<span
-                                                class="ml-2 font-light">Plan</span></h3>
+                                        <h3 class="p-3 text-lg font-bold tracking-wide text-center uppercase"> طرح <span
+                                                class="ml-2 font-light">اولیه</span></h3>
                                         <h4
                                             class="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
                                             <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>48</h4>
-                                        <p class="text-sm text-gray-600">In our basic plan you can take advantage of all these
-                                            features below.
+                                        <p class="text-sm text-gray-600">در طرح اولیه شما از مزایای زیر می توانید مستفید شود
                                         </p>
                                     </div>
         
@@ -511,14 +525,12 @@
                                     class="py-4 text-sm font-semibold leading-none tracking-wide text-center text-white uppercase bg-indigo-500 rounded-t">
                                     Most Popular</div>
                                 <div class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-6">
-                                    <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase">Pro<span
-                                            class="ml-2 font-light">Plan</span></h3>
+                                    <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase"> طرح <span
+                                            class="ml-2 font-light">پرو</span></h3>
                                     <h4
                                         class="flex items-center justify-center pb-6 text-5xl font-bold text-center text-gray-900">
                                         <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>98</h4>
-                                    <p class="text-sm text-gray-600">Our most popular package is the Pro Plan which gives you
-                                        access to the
-                                        following:</p>
+                                    <p class="text-sm text-gray-600">طرح مشهور و اصلی ما همین طرح پرو است که می تواند به مزایا و ویژگی های زیر دسترسی داشته باشد</p>
                                 </div>
                                 <div class="flex justify-start pl-12 mt-8 sm:justify-start">
                                     <ul>
@@ -570,8 +582,8 @@
                                 <div class="overflow-hidden text-black bg-white rounded-lg shadow-lg shadow-inner">
                                     <div
                                         class="block max-w-sm px-8 mx-auto mt-5 text-sm text-left text-black sm:text-md lg:px-8">
-                                        <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase">Premium<span
-                                                class="ml-2 font-light">Plan</span></h3>
+                                        <h3 class="p-3 pb-1 text-lg font-bold tracking-wide text-center uppercase"> طرح <span
+                                                class="ml-2 font-light"> ثانوی </span></h3>
                                         <h4
                                             class="flex items-center justify-center pb-6 text-4xl font-bold text-center text-gray-900">
                                             <span class="mr-1 -ml-2 text-lg text-gray-700">$</span>78</h4>

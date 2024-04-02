@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\workers;
 use App\Models\Works;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,10 @@ class WorksController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Works $works)
     {
-        //
+        $works=$works->orderBy("id","desc")->get();
+        return view("dashboard", ["works"=> $works]);
     }
 
     /**
@@ -58,8 +60,12 @@ class WorksController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Works $works)
+    public function destroy()
     {
         //
+    }
+    function getworkers(Request $request,$workId) {
+        $workers=workers::where("work_id",$workId)->get();
+        return view("workers.workers", ["workers"=> $workers]);
     }
 }

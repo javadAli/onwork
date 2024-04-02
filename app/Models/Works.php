@@ -11,7 +11,7 @@ class Works extends Model
     protected $table="works";
     protected $fillable=["name","addres"];
     protected $primaryKey="id";
-    public function works(){
-        return $this->hasMany(workers::class);
+    public function workers(){
+        return $this->hasMany(workers::class,"work_id","id");
     }
 }

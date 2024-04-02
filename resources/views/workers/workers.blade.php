@@ -1,24 +1,21 @@
 <x-app-layout>
-
     <div class="flex flex-row">
-        <button onclick="openModal('addworkModalId')" data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"> افزودن </button>
+        <button onclick="openModal('addworkerModalId')" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> افزودن </button>
     </div>
     <div class="flex flex-row flex-wrap ">
-        @foreach ($works as $work)
-            <div class="my-3 mx-2 bg-gray-400 border-gray-500 rounded-sm px-4 py-5 column-1/4 w-max-4">
+        @foreach ($workers as $worker)
+            <div class="my-3 mx-2 bg-gray-400 border-gray-500 rounded-sm px-4 py-5 column-1/4">
                 <div class="flex flex-col items-center">
                     <div class="rounded-full h-16 w-16 mx-auto my-0  bg-slate-50">
-                        <img class="rounded-full h-16 w-16 mx-auto my-0  bg-slate-50" src="{{mix('resources/images/works/1.jpg')}}" alt=""/>
+                        <img src="{{url('/public/build/assets/images/1.jpg')}}" alt=""/>
                     </div>
-                    <p class="text-center mx-14 mb-2">{{$work->name}}</p>
-                    <a href="{{url('/workers/'.$work->id)}}" class="mx-auto hover:bg-blue-700 py-1 px-5 overflow-auto shadow-sm sm:rounded-lg bg-blue-500"> جزءیات </a>
+                    <p class="text-center mx-14 mb-2">{{$worker->name}}</p>
+                    <a href="{{url('/workers')}}" class="mx-auto hover:bg-blue-700 py-1 px-5 overflow-auto shadow-sm sm:rounded-lg bg-blue-500"> جزءیات </a>
                 </div>
             </div>    
         @endforeach
     </div>
-
-
-    <div id="addworkModalId" class="fixed inset-0 items-center justify-center hidden bg-gray-900 bg-opacity-50 z-50 m-auto">
+    <div id="addworkerModalId" class="fixed inset-0 items-center justify-center hidden bg-gray-900 bg-opacity-50 z-50 m-auto">
         <div class="bg-white rounded-lg w-96">
           <!-- Header -->
           <div class="flex justify-between items-center px-4 py-2 border-b">
@@ -53,9 +50,4 @@
           </div>
         </div>
     </div>
-
-  
-  <!-- Main modal -->
-
-  
 </x-app-layout>

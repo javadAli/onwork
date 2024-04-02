@@ -12,12 +12,12 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/works.js'])
+        <script src="{{ mix('resources/js/works.js') }}"></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased bg-gray-600" dir="rtl">
+        <div class="min-h-screen">
             @include('layouts.navigation')
-
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
