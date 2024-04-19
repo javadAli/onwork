@@ -9,9 +9,10 @@ class Works extends Model
 {
     use HasFactory;
     protected $table="works";
-    protected $fillable=["name","addres"];
+    protected $fillable=["name","address","SnUser"];
     protected $primaryKey="id";
     public function workers(){
         return $this->hasMany(workers::class,"work_id","id");
     }
+    public $timestamps=false;
 }

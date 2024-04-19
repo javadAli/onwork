@@ -10,8 +10,11 @@ class WorkersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Works $works)
+    public function index(workers $works)
     {
+
+        $workers=workers::all();
+        return response()->json(['workers'=>$workers]);
 
     }
 
@@ -28,7 +31,19 @@ class WorkersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name=$request->name;
+        $workeraddress=$request->address;
+        $workerphone=$request->workerphone;
+        $work_id=$request->work_id;
+        $created_at=now();
+        $worker=workers::create([
+                            "name"=>"$name",
+                            "workeraddress"=>"$workeraddress",
+                            "workerphone"=>"$workerphone",
+                            "work_id"=>$work_id,
+                            "created_at"=>$created_at
+                        ]);
+        return response()->json(['worker'=>$worker]);
     }
 
     /**

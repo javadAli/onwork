@@ -30,7 +30,11 @@ class WorksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name=$request->name;
+        $address=$request->address;
+        $snUser=$request->SnUser;
+        $work=Works::create(['name'=>"$name",'address'=>"$address","SnUser"=>$snUser]);
+        return response()->json(['work'=>$work]);
     }
 
     /**
@@ -52,9 +56,15 @@ class WorksController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Works $works)
+    public function update(Request $request, Works $work)
     {
-        //
+        
+        $address=$request->address;
+        $snUser=$request->SnUser;
+        $name=$request->name;
+        $work=Works::where('id',$work->id)->update(['name'=>"$name",'address'=>"$address","SnUser"=>$snUser]);
+        
+        return response()->json(['work'=>$work]);
     }
 
     /**

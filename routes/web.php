@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WorksController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
+use App\Http\COntrollers\WorkersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,14 @@ use Illuminate\View\View;
 */
 Route::view("/","welcome");
 Route::get("/workers/{workId}",[WorksController::class,"getWorkers"])->middleware('auth');
-Route::middleware('auth')->resource("works",WorksController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::resource("works",WorksController::class)->middleware("auth");
+Route::resource("workers",WorkersController::class)->middleware("auth");
 
 require __DIR__.'/auth.php';
